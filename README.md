@@ -1,2 +1,9 @@
 # ServiceMgr
-By NodeJs and zookeeper to manage services
+> By NodeJs and zookeeper to manage services
+
+## zookeeper怎么做到服务注册
+1. 指定一个节点来作为所有服务地址的根节点（类似命名空间），该节点应该为一个持久节点。
+2. 有n个应用，每个应用下有n台机器，所以应用节点也拥有子节点，也应该是持久节点。
+3. 每台机器在启动应用服务的时候要向zk注册一个地址，在服务下线的时候要删除zk中的地址，所以使用临时节点特点正好符合这个行为，同时可以使用顺序节点自动帮我们管理节点名称。
+
+## [NodeJS服务注册与发现](https://juejin.im/post/5c35e916e51d4551e7446cc1)
